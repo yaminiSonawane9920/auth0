@@ -13,21 +13,47 @@ const { domain, clientId, authorizationParams: { audience }, apiUri, errorPath }
   errorPath: string;
 };
 
+// export const environment = {
+//   production: false,
+//   auth: {
+//     domain,
+//     clientId,
+//     authorizationParams: {
+//       ...(audience && audience !== '{yourApiIdentifier}' ? { audience } : null),
+//       redirect_uri: window.location.origin,
+//     },
+//     errorPath,
+//   },
+//   httpInterceptor: {
+//     allowedList: [`${apiUri}/*`],
+//   },
+// };
+
 export const environment = {
   production: false,
   auth: {
-    domain,
-    clientId,
+    domain: 'dev-8m4sesuukq7r4rep.us.auth0.com',
+    clientId: 'USY4Orl4Fqg4jqSyHBRNGwyhkI6IGnhv',
     authorizationParams: {
-      ...(audience && audience !== '{yourApiIdentifier}' ? { audience } : null),
-      redirect_uri: window.location.origin,
-    },
-    errorPath,
+      redirect_uri: 'https://localhost:39805', 
+      audience: 'https://dev-8m4sesuukq7r4rep.us.auth0.com/api/v2/',
+    }
   },
   httpInterceptor: {
-    allowedList: [`${apiUri}/*`],
-  },
+    allowedList: [
+      {
+        uri: 'http://localhost:3001/api/*',
+        tokenOptions: {
+          // You can keep this default:
+          authorizationParams: {
+            audience: 'https://dev-8m4sesuukq7r4rep.us.auth0.com/api/v2/'
+          }
+        }
+      }
+    ]
+  }
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file

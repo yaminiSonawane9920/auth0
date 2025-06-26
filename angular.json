@@ -67,7 +67,11 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "buildTarget": "login-demo:build"
+            "buildTarget": "login-demo:build",
+            "ssl": true,
+            "sslKey": "localhost-key.pem",
+            "sslCert": "localhost.pem",
+            "port": 39805
           },
           "configurations": {
             "production": {
